@@ -66,3 +66,18 @@ nba_dataset %>%
     size = "Sample Size"
   ) +
   theme_minimal() # Found out this makes the plot look cleaner (:
+
+# Now let me think hmmmmmmmm....
+# I want to make each year have its own box plot to show
+# the full distribution of player heights drafted each year
+
+nba_dataset %>%
+  # apparently using DRAFT_YEAR as a factor will ensure that years
+  # are treated as categories instead of continuous values.
+  ggplot(aes(x = as.factor(DRAFT_YEAR), y = HEIGHT_NUMERIC)) +
+  geom_boxplot(outlier.color = "red") +
+  labs(
+    title = "Distribution of Player Heights Drafted Each Year", 
+    x = "Draft Year", 
+    y = "Player Height (feet)"
+  ) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
