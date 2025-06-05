@@ -3,3 +3,52 @@ title: "Valentines_day"
 format: html
 ---
 
+## Introduction
+
+Okay so first what we are going to do is download the necessary datasets required to perform our analysis.
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+
+historical_spending <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-02-13/historical_spending.csv')
+gifts_age <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-02-13/gifts_age.csv')
+gifts_gender <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-02-13/gifts_gender.csv')
+
+```
+
+Link to the [dataset information](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-02-13/readme.md "Dataset information context")
+
+## Data Analyzing
+
+Now that we have our datasets, we want to form a hypothesis about the data and then try to visualize that hypothesis.
+
+Ex. I think that candy is the most popular gift year after year
+
+Next, we ask ourselves, what do we need to do the data to be able to visualize this hypothesis.
+
+So in this case we would want to grab each years spending categories and plot that in something like a stacked bar graph or pie chart
+
+```{r}
+spending_data <- historical_spending %>%
+  select(Year, 4:10)
+
+spending_long <- spending_data %>%
+  pivot_longer(
+    cols = -Year,
+    names_to = "category",
+    values_to = "spending"
+    )
+
+ggplot(spending_long, aes(x = Year, y = spending, fill = category)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average Spending by Category Each Year",
+       x = "Year",
+       y = "Average Spending",
+       fill = "Category") +
+  theme_minimal()
+```
+
+## Interpretation
+
+Our initial hypothesis that candy was always the most popular gift bought on Valentine's Day, was clearly not supported by the data. The analysis, however, reveals a quite surprising trend showing candy remains persistently the least popular type of gift throughout the 2012-2023 period. The spending on candy has remained stubbornly low, somewhere around 5-10 units each year, showing minimal increase in tandem with the overall increase in Valentine's Day-related spending. More evidence of a preference clearly emerged from gifts that are more valuable and experiential. Top contributors to Valentine's Day-related spending are jewelry and dinner outings, growing steadily, reaching the height of 30-35 units in 2023. These two categories almost solely account for half of the entire spending, showing how marked the consumer preference is for both tangible goods and shared experiences.A nice trend, coming in after 2018 is the explosive growth in the gift card and jewelry spend. Both relatively small starting points have mushroomed and will hit around 25-30 units in 2023. This points at changing consumer behavior; from more generic and versatile gifts that the receiver can use at their discretion or to high-value tokens of affection.
