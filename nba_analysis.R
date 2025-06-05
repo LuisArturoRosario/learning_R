@@ -1,6 +1,15 @@
 library(ggplot2)
 library(tidyverse)
 
+# WARNING!!!
+# BEFORE YOU LOOK AT THIS FILE READ THIS
+
+# I am not a statistician or data scientist, it is almost certain
+# that some of these plots are not scientifically valid and that
+# is okay. Also, you may see some operations that either are not necessary
+# or idiomatic for R lang, that is because I am not a R programmer, I am a Python programmer... lol
+# Anyway, I just want you to know that before you continue reading.
+
 nba_dataset <- read_csv("datasets/PlayerIndex_nba_stats.csv")
 
 # Here I clean my data of NULL values and instead replace them with the mean of the column
