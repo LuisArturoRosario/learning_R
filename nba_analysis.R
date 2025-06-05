@@ -1,6 +1,5 @@
 library(ggplot2)
 library(tidyverse)
-library(dplyr)
 
 nba_dataset <- read_csv("datasets/PlayerIndex_nba_stats.csv")
 
@@ -33,3 +32,25 @@ ggplot(mean_height, aes(x = DRAFT_YEAR, y = HEIGHT)) +
     x = "Draft Year", 
     y = "Player Height (feet)"
   )
+
+# Now I'm going to include the position of the players
+# and their sample size in the plot so we can visualize the sample size and
+# the average height of players drafted each year
+
+nba_dataset %>%
+  # Group by DRAFT_YEAR and POSITION
+  group_by(DRAFT_YEAR, POSITION) %>%
+  # then calculate the mean height and sample size
+  summarise(MEAN_HEIGHT = mean(HEIGHT_NUMERIC, na.rm = TRUE),
+            n = n() ) %>%
+  # then plot the data
+  ggplot(aes(x = DRAFT_YEAR, y = MEAN_HEIGHT, color = POSITION)) +
+  geom_jitter(aes(size = n), alpha = 0.5) +
+  geom_smooth(se = FALSE) +
+  labs(
+    title = "Average Drafted NBA Player Height by Year and Position", 
+    x = "Draft Year", 
+    y = "Player Height (feet)",
+    size = "Sample Size"
+  ) +
+  theme_minimal() # Found out this makes the plot look cleaner (:
