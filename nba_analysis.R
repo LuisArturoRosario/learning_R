@@ -95,3 +95,6 @@ nba_dataset %>%
     y = "Player Height (feet)"
   ) +
   theme_minimal()
+
+# TODO: analyze the top draft picks of each year and check their points per game
+# to see if they were a worthwhile pick.
