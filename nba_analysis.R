@@ -12,6 +12,9 @@ library(tidyverse)
 
 nba_dataset <- read_csv("datasets/PlayerIndex_nba_stats.csv")
 
+# convert DRAFT_YEAR into a factor
+nba_dataset$DRAFT_YEAR <- as.factor(nba_dataset$DRAFT_YEAR)
+
 # Here I clean my data of NULL values and instead replace them with the mean of the column
 nba_dataset$HEIGHT[is.na(nba_dataset$HEIGHT)] <- 
   mean(nba_dataset$HEIGHT, na.rm = TRUE)
