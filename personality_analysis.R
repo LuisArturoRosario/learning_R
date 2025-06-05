@@ -23,3 +23,4 @@ ggplot(data, aes(x = Time_spent_Alone, y = Friends_circle_size)) +
     y = "Friend circle size"
   )
 
+  
