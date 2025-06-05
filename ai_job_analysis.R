@@ -3,7 +3,6 @@
 
 library(ggplot2)
 library(tidyverse)
-library(scales)
 
 ai_jobs <- read_csv("datasets/ai_jobs_dataset.csv")
 
