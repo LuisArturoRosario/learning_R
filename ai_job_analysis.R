@@ -27,8 +27,8 @@ avg_salary <- ai_jobs %>%
   group_by(remote_ratio) %>%
   summarise(avg_salary_usd = mean(salary_usd))
 
-ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd)) +
-  geom_col(fill = "red", show.legend = FALSE) +
+ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd, fill = remote_ratio)) +
+  geom_col(show.legend = FALSE) +
   scale_y_continuous(labels = dollar) +
   labs(
     title = "AI Job Remote Ratio vs. Average Salary in USD",
@@ -36,5 +36,5 @@ ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd)) +
     x = "Remote Ratio", 
     y = "Average Salary (USD)"
   ) +
-  coord_cartesian(ylim = c(90000, 115000)) +
+  coord_cartesian(ylim = c(112000, 117000)) +
   theme_minimal()
