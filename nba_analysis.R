@@ -81,3 +81,17 @@ nba_dataset %>%
     x = "Draft Year", 
     y = "Player Height (feet)"
   ) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+
+# Now lets see how depending on the draft round, what is the variance of heights that you
+# will see getting drafted in the later rounds of the NBA draft.
+
+nba_dataset %>%
+  drop_na(DRAFT_ROUND) %>%
+  ggplot(aes(x = DRAFT_ROUND, y = HEIGHT_NUMERIC)) +
+  geom_jitter(fill = "skyblue", outlier.color = "red") +
+  labs(
+    title = "Distribution of Player Heights by Draft Round", 
+    x = "Draft Round", 
+    y = "Player Height (feet)"
+  ) +
+  theme_minimal()
