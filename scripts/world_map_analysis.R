@@ -26,11 +26,17 @@ map_merged <- world %>%
 # Convert the Gasoline Price to numeric after removing the dollar sign
 map_merged$`Gasoline Price` <- as.numeric(gsub("[$]", "", map_merged$`Gasoline Price`))
 
+# Don't worry about this, its just the caption for the plot.
+caption_text <- "Data source: <b>Nidula Elgiriyewithana</b> (2023). Global Country Information Dataset 2023 [Data set]. Kaggle. doi: 10.34740/KAGGLE/DSV/6101670 | Visualization by <b><i>Luis Rosario</i></b>"
+
 ggplot(map_merged) +
   geom_sf(aes(fill = `Gasoline Price`)) +
   scale_fill_viridis_c(option = "plasma", na.value = "grey90", labels = label_dollar(prefix = "$", accuracy = 0.01)) +
   theme_minimal() +
-  labs(title = "Global Gasoline Prices (2023)", fill = "Gasoline Price") +
-  theme_minimal()
+  labs(title = "Global Gasoline Prices (2023)", fill = "Gasoline Price (Per Liter) ", 
+       caption = caption_text) + theme(
+         plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+         plot.caption = ggtext::element_markdown(hjust = 0.5, size = 8),
+       )
 
 ggsave("plots/global_gasoline_prices_2023.png")
