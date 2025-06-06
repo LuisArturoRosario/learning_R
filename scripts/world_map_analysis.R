@@ -1,11 +1,15 @@
-# File:           world_map_analysis.R
-# Author:         Luis Arturo Rosario Alers
-# Date Created:   2025-6-6
-# Last Modified:  2025-6-6
-# Description:    Uses world data to create visualizations
-# Dependencies:   tidyverse, ggplot2, sf, rnaturalearth, countrycode, rnaturalearthdata, scales, ggtext
-# Inputs:         Descriptio
-# Outputs:        Description of output files, plots, etc.
+# world_map_analysis.R
+# Author: Luis Arturo Rosario Alers
+# Date Created: 2025-06-06
+# Last Modified: 2025-06-06
+# Description: Visualizes world data using maps.
+# Dependencies: tidyverse, ggplot2, sf, rnaturalearth, countrycode, rnaturalearthdata, scales, ggtext
+# Inputs: datasets/world_data_2023.csv
+# Outputs: plots/global_gasoline_prices_2023.png
+# License: MIT
+# Source: https://github.com/LuisArturoRosario/learning_R
+#
+# See LICENSE file for details
 
 library(tidyverse)
 library(ggplot2)
@@ -14,6 +18,7 @@ library(rnaturalearth)
 library(countrycode)
 library(rnaturalearthdata)
 library(scales)
+library(ggtext)
 
 map_data <- read_csv("datasets/world_data_2023.csv")
 
