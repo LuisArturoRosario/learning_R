@@ -1,5 +1,5 @@
 library(ggplot2)
-library(dplyr)
+library(tidyverse)
 
 new_score <-data %>%
   group_by(social_media_hours) %>%
