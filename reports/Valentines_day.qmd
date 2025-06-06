@@ -97,4 +97,4 @@ The analysis of the average spending by age group reveals a clear trend: younger
 
 ## What we Learned
 
-We learned how tatterns across categoro break down a hypothesis using grouped data and transform it into a visual insight. This process showed us how visualization can uncover trends that may not be obvious in raw data alone.
+We learned how patterns across categories break down a hypothesis using grouped data and transform it into a visual insight. This process showed us how visualization can uncover trends that may not be obvious in raw data alone.
