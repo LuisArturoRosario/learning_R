@@ -1,3 +1,12 @@
+# File:           world_map_analysis.R
+# Author:         Luis Arturo Rosario Alers
+# Date Created:   2025-6-6
+# Last Modified:  2025-6-6
+# Description:    Uses world data to create visualizations
+# Dependencies:   tidyverse, ggplot2, sf, rnaturalearth, countrycode, rnaturalearthdata, scales, ggtext
+# Inputs:         Descriptio
+# Outputs:        Description of output files, plots, etc.
+
 library(tidyverse)
 library(ggplot2)
 library(sf)
