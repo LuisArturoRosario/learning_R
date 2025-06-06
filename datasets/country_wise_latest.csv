@@ -1,4 +1,4 @@
-region,Confirmed,Deaths,Recovered,Active,New_cases,New_deaths,New_recovered,Deaths_per_100_Cases,Recovered_per_100_Cases,Deaths_per_100_Recovered,Confirmed_last_week,1_week_change,1_week_increase,WHO_Region
+Country,Confirmed,Deaths,Recovered,Active,New_cases,New_deaths,New_recovered,Deaths_per_100_Cases,Recovered_per_100_Cases,Deaths_per_100_Recovered,Confirmed_last_week,1_week_change,1_week_increase,WHO_Region
 Afghanistan,36263,1269,25198,9796,106,10,18,3.5,69.49,5.04,35526,737,2.07,Eastern Mediterranean
 Albania,4880,144,2745,1991,117,6,63,2.95,56.25,5.25,4171,709,17.0,Europe
 Algeria,27973,1163,18837,7973,616,8,749,4.16,67.34,6.17,23691,4282,18.07,Africa
