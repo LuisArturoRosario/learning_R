@@ -62,8 +62,12 @@ ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd, fill = remote_ratio
 
 Our analysis shows that our original hypothesis was correct. Remote jobs pay more than in person jobs and hybrid jobs.
 
-1.  Remote jobs pay more than in person jobs and hybrid jobs.
-2.  Hybrid jobs pay more than in person jobs but less than remote jobs.
-3.  In person jobs pay less than both remote and hybrid jobs.
+Let $R$ = pay for Remote jobs\
+Let $H$ = pay for Hybrid jobs\
+Let $I$ = pay for In-person jobs
+
+The pay ranking is:
+
+\[ $R$ \> $H$ \> $I$ \]
 
 The data shows that remote jobs pay more than in person jobs. This is expected as remote jobs are often more flexible and allow for a better work-life balance. The data also shows that hybrid jobs pay more than in person jobs but less than remote jobs. This is expected as hybrid jobs allow for a balance between remote and in person work. The data also shows that in person jobs pay less than both remote and hybrid jobs. This is expected as in person jobs are often more expensive to run and require more resources.
