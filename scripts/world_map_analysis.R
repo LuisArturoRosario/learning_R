@@ -4,6 +4,7 @@ library(sf)
 library(rnaturalearth)
 library(countrycode)
 library(rnaturalearthdata)
+library(scales)
 
 map_data <- read_csv("datasets/world_data_2023.csv")
 
@@ -27,6 +28,9 @@ map_merged$`Gasoline Price` <- as.numeric(gsub("[$]", "", map_merged$`Gasoline P
 
 ggplot(map_merged) +
   geom_sf(aes(fill = `Gasoline Price`)) +
-  scale_fill_viridis_c(option = "plasma", na.value = "grey90") +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey90", labels = label_dollar(prefix = "$", accuracy = 0.01)) +
   theme_minimal() +
-  labs(title = "Global Gasoline Prices (2023)", fill = "Gasoline Price")
+  labs(title = "Global Gasoline Prices (2023)", fill = "Gasoline Price") +
+  theme_minimal()
+
+ggsave("plots/global_gasoline_prices_2023.png")
