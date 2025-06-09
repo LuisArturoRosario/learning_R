@@ -26,5 +26,6 @@ valid_data <- world_map %>%
   filter(!is.na(Confirmed) & !is.na(Deaths) & !is.na(Recovered) & !is.na(Active))
 
 ggplot(valid_data, aes(x = long, y = lat, group = group, fill = Confirmed)) +
-  geom_polygon(aes(fill = Confirmed), color = "black") +
-  labs(title = "Confirmed Cases by Country", fill = "Confirmed")
+  geom_polygon(aes(fill = Confirmed), color = "white", alpha = 0.7) +
+  labs(title = "Confirmed Cases by Country", fill = "Confirmed") +
+  theme_minimal()
