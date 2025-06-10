@@ -27,7 +27,7 @@ avg_salary <- ai_jobs %>%
   group_by(remote_ratio) %>%
   summarise(avg_salary_usd = mean(salary_usd))
 
-ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd, fill = remote_ratio)) +
+ai_plot <- ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd, fill = remote_ratio)) +
   geom_col(show.legend = FALSE) +
   scale_y_continuous(labels = dollar) +
   labs(
@@ -38,3 +38,5 @@ ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd, fill = remote_ratio
   ) +
   coord_cartesian(ylim = c(112000, 117000)) +
   theme_minimal()
+
+ai_plot
