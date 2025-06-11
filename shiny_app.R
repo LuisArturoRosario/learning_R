@@ -27,7 +27,7 @@ ui <- fluidPage(
     }
     "))
   ),
-  titlePanel(HTML("<b>Dashboard Template</b>")),
+  titlePanel(HTML("<b>Dashboard Templates</b>")),
   page_sidebar(
     sidebar = sidebar(
       h1(
@@ -55,12 +55,11 @@ ui <- fluidPage(
     ),
     mainPanel(
       h1("This is the main area", style = "text-align: center;"),
-      plotOutput("new_plot"),
-      plotOutput("covid_19_plot"),
-      plotOutput("social_media_plot"),
+      selectInput("plot_to_explore", "Choose a plot to explore:", choices = c("AI Job", "Covid-19", "Social Media & Exam Scores")),
+      plotOutput("selected_plot"),
       hr(),
       h2("Data Tables"),
-      selectInput("table_to_explore", "Choose a table to explore:", choices = c("AI Job", "Covid-19", "Student Nahom")),
+      selectInput("table_to_explore", "Choose a table to explore:", choices = c("AI Job", "Covid-19", "Social Media & Exam Scores")),
       DTOutput("cool_table"),
       p("Tip: Use the search box to filter results, or click column headers to sort."),
     ),
@@ -98,22 +97,21 @@ server <- function(input, output) {
     }
   })
 
-  output$new_plot <- renderPlot({
-    ai_plot
-  })
+  plot <- list(
+    "AI Job" = ai_plot,
+    "Covid-19" = covid_19_plot,
+    "Social Media & Exam Scores" = social_media_plot
+  )
 
-  output$covid_19_plot <- renderPlot({
-    covid_19_plot
-  })
-
-  output$social_media_plot <- renderPlot({
-    social_media_plot
+  output$selected_plot <- renderPlot({
+    selected_plot <- plot[[input$plot_to_explore]]
+    selected_plot
   })
 
   datasets <- list(
     "AI Job" = ai_jobs,
     "Covid-19" = covid_data,
-    "Student Nahom" = data
+    "Social Media & Exam Scores" = data
   )
 
   output$cool_table <- DT::renderDataTable({
@@ -138,4 +136,4 @@ server <- function(input, output) {
   })
 }
 
-shinyApp(ui = ui, server = server, options = list(port = 6060))
+shinyApp(ui = ui, server = server, options = list(port = 6060, autoreload = TRUE))
