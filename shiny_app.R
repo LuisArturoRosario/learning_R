@@ -117,7 +117,6 @@ server <- function(input, output) {
   output$cool_table <- DT::renderDataTable({
     req(input$table_to_explore)
     selected_data <- datasets[[input$table_to_explore]]
-    print(selected_data)
     DT::datatable(
       selected_data,
       options = list(
