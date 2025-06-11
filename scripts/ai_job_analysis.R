@@ -20,7 +20,7 @@ get_factor <- function(x) {
 # convert remote ratio to string equivalent
 ai_jobs$remote_ratio <- sapply(ai_jobs$remote_ratio, get_factor)
 
-ai_jobs$salary_usd[is.na(ai_jobs$salary_usd)] <- mean(ai_jobs$salary_usd, na.rm = TRUE) 
+ai_jobs$salary_usd[is.na(ai_jobs$salary_usd)] <- mean(ai_jobs$salary_usd, na.rm = TRUE)
 
 # create a new avg salary group with remote ratio and avg salary in USD (might be a better way to do it idk)
 avg_salary <- ai_jobs %>%
@@ -33,7 +33,7 @@ ai_plot <- ggplot(avg_salary, aes(x = remote_ratio, y = avg_salary_usd, fill = r
   labs(
     title = "AI Job Remote Ratio vs. Average Salary in USD",
     subtitle = "Does working remotely for AI jobs make you more money?",
-    x = "Remote Ratio", 
+    x = "Remote Ratio",
     y = "Average Salary (USD)"
   ) +
   coord_cartesian(ylim = c(112000, 117000)) +

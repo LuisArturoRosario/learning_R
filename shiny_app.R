@@ -115,7 +115,7 @@ server <- function(input, output) {
     "Covid-19" = covid_data,
     "Student Nahom" = data
   )
-  
+
   output$cool_table <- DT::renderDataTable({
     req(input$table_to_explore)
     selected_data <- datasets[[input$table_to_explore]]
