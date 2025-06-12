@@ -54,12 +54,11 @@ ui <- fluidPage(
       input_switch("switch_example", textOutput("switch_state"))
     ),
     mainPanel(
-      h1("This is the main area", style = "text-align: center;"),
-      selectInput("plot_to_explore", "Choose a plot to explore:", choices = c("AI Job", "Covid-19", "Social Media & Exam Scores")),
+      h1(HTML("<b>Our</b> <u><b><em>projects</em></b></u>"), style = "text-align: center;"),
+      selectInput("plot_to_explore", "Choose a plot & dataset to explore:", choices = c("AI Job", "Covid-19", "Social Media & Exam Scores")),
       plotOutput("selected_plot"),
       hr(),
-      h2("Data Tables"),
-      selectInput("table_to_explore", "Choose a table to explore:", choices = c("AI Job", "Covid-19", "Social Media & Exam Scores")),
+      h5("Data Table"),
       DTOutput("cool_table"),
       p("Tip: Use the search box to filter results, or click column headers to sort."),
     ),
@@ -84,6 +83,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   click <- reactiveVal(0)
   switch_state_msg <- reactiveVal()
+  
 
   observeEvent(input$click_me, {
     click(click() + 1)
@@ -98,25 +98,19 @@ server <- function(input, output) {
   })
 
   plot <- list(
-    "AI Job" = ai_plot,
-    "Covid-19" = covid_19_plot,
-    "Social Media & Exam Scores" = social_media_plot
+    "AI Job" = list(ai_plot, ai_jobs),
+    "Covid-19" = list(covid_19_plot, covid_data),
+    "Social Media & Exam Scores" = list(social_media_plot, data)
   )
-
   output$selected_plot <- renderPlot({
-    selected_plot <- plot[[input$plot_to_explore]]
+    selected_plot <- plot[[input$plot_to_explore]][[1]]
     selected_plot
   })
 
-  datasets <- list(
-    "AI Job" = ai_jobs,
-    "Covid-19" = covid_data,
-    "Social Media & Exam Scores" = data
-  )
-
   output$cool_table <- DT::renderDataTable({
-    req(input$table_to_explore)
-    selected_data <- datasets[[input$table_to_explore]]
+    req(input$plot_to_explore)
+    selected_data <- plot[[input$plot_to_explore]][[2]]
+    print(selected_data)
     DT::datatable(
       selected_data,
       options = list(
