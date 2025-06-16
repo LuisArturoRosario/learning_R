@@ -2,6 +2,7 @@ library(shiny)
 library(bslib)
 library(ggplot2)
 library(DT)
+library(leaflet)
 
 source("scripts/ai_job_analysis.R")
 source("scripts/covid_19_analysis.R")
@@ -57,6 +58,9 @@ ui <- fluidPage(
       h1(HTML("<b>Our</b> <u><b><em>projects</em></b></u>"), style = "text-align: center;"),
       selectInput("plot_to_explore", "Choose a plot & dataset to explore:", choices = c("AI Job", "Covid-19", "Social Media & Exam Scores")),
       plotOutput("selected_plot"),
+      hr(),
+      h5("Interactive Map"),
+      leafletOutput("map"),
       hr(),
       h5("Data Table"),
       DTOutput("cool_table"),
@@ -126,6 +130,13 @@ server <- function(input, output) {
 
   output$switch_state <- renderText({
     switch_state_msg()
+  })
+
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      addMarkers(lng = -74.0060, lat = 40.7128, popup = "New York") %>%
+      setView(lng = -74.0060, lat = 40.7128, zoom = 12)
   })
 }
 
